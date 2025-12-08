@@ -31,3 +31,8 @@ resource "grafana_data_source" "influxdb" {
     token = var.influxdb_token
   })
 }
+
+resource "grafana_dashboard" "kropelki_dashboard" {
+  config_json = file("dashboard.json")
+  overwrite = true
+}
