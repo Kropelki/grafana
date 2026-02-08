@@ -1,6 +1,4 @@
-# tf-infra
-
-Terraform-managed infrastructure for the project.
+# grafana
 
 This repository configures **Grafana Cloud** data sources to connect with **InfluxDB** for weather data visualization.
 
