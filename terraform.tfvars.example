@@ -1,0 +1,9 @@
+# Grafana Configuration
+grafana_url        = GRAFANA_URL
+grafana_auth_token = GRAFANA_AUTH_TOKEN
+
+# InfluxDB Configuration
+influxdb_url    = INFLUXDB_URL
+influxdb_token  = INFLUXDB_TOKEN
+influxdb_org_id = INFLUXDB_ORG_ID
+influxdb_bucket = INFLUXDB_BUCKET

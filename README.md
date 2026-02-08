@@ -4,8 +4,8 @@ This repository configures **Grafana Cloud** data sources to connect with **Infl
 
 ```bash
 terraform init
-terraform plan -var-file=".tfvars"
-terraform apply -var-file=".tfvars"
+terraform plan"
+terraform apply"
 ```
 
 ---
