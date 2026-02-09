@@ -22,3 +22,14 @@ wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/sha
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(. /etc/os-release && echo "$UBUNTU_CODENAME") main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 sudo apt update && sudo apt install terraform
 ```
+
+---
+
+Flow for updating Grafana dashboard:
+
+1. Update the dashboard in Grafana Cloud UI and save
+2. Run `./fetch_dashboard.sh`
+3. Run `terraform plan` and expect "no changes"
+4. Commit the updated dashboard JSON to Git
+
+<!-- #TODO: do we really need Terraform at all? -->
