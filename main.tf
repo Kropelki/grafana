@@ -16,6 +16,10 @@ provider "grafana" {
 
 # https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/data_source
 # https://grafana.com/docs/grafana/latest/datasources/influxdb/configure-influxdb-data-source/#provisioning-examples
+#
+# Command to import existing InfluxDB datasource:
+# terraform import grafana_data_source.influxdb "ber1znn8lplvke"
+#
 resource "grafana_data_source" "influxdb" {
   type = "influxdb"
   name = "weather-measurements"
@@ -32,6 +36,33 @@ resource "grafana_data_source" "influxdb" {
   })
 }
 
+# Turso datasource (requires the Turso Grafana plugin)
+#
+# Command to import existing Turso datasource:
+# terraform import grafana_data_source.turso "aeusl4w6pt1xcf"
+#
+resource "grafana_data_source" "turso" {
+  type = "yesoreyeram-infinity-datasource"
+  name = "turso-infinity"
+  url  = var.turso_url
+
+  json_data_encoded = jsonencode({
+    auth_method              = "bearerToken"
+    customHealthCheckEnabled = false
+    global_queries           = []
+    oauthPassThru            = false
+    pdcInjected              = true
+  })
+
+  secure_json_data_encoded = jsonencode({
+    bearerToken = var.turso_auth_token
+  })
+}
+
+#
+# Command to import existing dashboard:
+# terraform import grafana_dashboard.kropelki_dashboard "kaz9b7b"
+#
 resource "grafana_dashboard" "kropelki_dashboard" {
   config_json = file("dashboard.json")
   overwrite = true

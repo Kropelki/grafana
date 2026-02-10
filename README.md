@@ -1,6 +1,6 @@
 # grafana
 
-This repository configures **Grafana Cloud** data sources to connect with **InfluxDB** for weather data visualization.
+This repository configures **Grafana Cloud** data sources to connect with **InfluxDB** and **Turso** for weather data visualization.
 
 ```bash
 terraform init
@@ -33,3 +33,14 @@ Flow for updating Grafana dashboard:
 4. Commit the updated dashboard JSON to Git
 
 <!-- #TODO: do we really need Terraform at all? -->
+
+---
+
+Script to list Turso databases using API token:
+
+```sh
+source .env
+
+curl -L https://api.turso.tech/v1/organizations/paulinek13/databases \
+  -H "Authorization: Bearer $TURSO_API_TOKEN"
+```

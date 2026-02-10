@@ -30,3 +30,14 @@ variable "influxdb_bucket" {
   type        = string
   default     = "weather-data"
 }
+
+variable "turso_url" {
+  description = "Turso database URL"
+  type        = string
+}
+
+variable "turso_auth_token" {
+  description = "Turso auth token"
+  type        = string
+  sensitive   = true
+}

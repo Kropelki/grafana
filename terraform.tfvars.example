@@ -7,3 +7,7 @@ influxdb_url    = INFLUXDB_URL
 influxdb_token  = INFLUXDB_TOKEN
 influxdb_org_id = INFLUXDB_ORG_ID
 influxdb_bucket = INFLUXDB_BUCKET
+
+# Turso Configuration
+turso_url        = TURSO_URL
+turso_auth_token = TURSO_AUTH_TOKEN
