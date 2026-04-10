@@ -181,7 +181,7 @@
                     "sort": "desc"
                 }
             },
-            "pluginVersion": "13.0.0-24139322263",
+            "pluginVersion": "13.1.0-24251769778",
             "targets": [
                 {
                     "dataset": "iox",
@@ -349,7 +349,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.0.0-24139322263",
+            "pluginVersion": "13.1.0-24251769778",
             "targets": [
                 {
                     "dataset": "iox",
@@ -510,7 +510,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.0.0-24139322263",
+            "pluginVersion": "13.1.0-24251769778",
             "targets": [
                 {
                     "dataset": "iox",
@@ -701,7 +701,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.0.0-24139322263",
+            "pluginVersion": "13.1.0-24251769778",
             "targets": [
                 {
                     "dataset": "iox",
@@ -919,7 +919,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.0.0-24139322263",
+            "pluginVersion": "13.1.0-24251769778",
             "targets": [
                 {
                     "dataset": "iox",
@@ -927,9 +927,10 @@
                         "type": "influxdb",
                         "uid": "bepu7jxdv591cc"
                     },
-                    "editorMode": "builder",
+                    "editorMode": "code",
                     "format": "table",
-                    "rawSql": "SELECT \"mc_pm1_0\", \"mc_pm2_5\", \"mc_pm10_0\", \"time\" FROM \"weather\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
+                    "rawQuery": true,
+                    "rawSql": "SELECT \"mc_pm1_0\", \"mc_pm2_5\", \"mc_pm10_0\", \"time\" FROM \"weather\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo AND \"time\" >= '2026-04-06T13:10:49Z'",
                     "refId": "A",
                     "sql": {
                         "columns": [
@@ -1100,7 +1101,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.0.0-24139322263",
+            "pluginVersion": "13.1.0-24251769778",
             "targets": [
                 {
                     "dataset": "iox",
@@ -1266,7 +1267,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.0.0-24139322263",
+            "pluginVersion": "13.1.0-24251769778",
             "targets": [
                 {
                     "dataset": "iox",
