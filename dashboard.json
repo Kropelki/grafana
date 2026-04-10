@@ -33,19 +33,21 @@
             "fieldConfig": {
                 "defaults": {
                     "color": {
-                        "mode": "palette-classic"
+                        "mode": "thresholds",
+                        "seriesBy": "last"
                     },
                     "custom": {
-                        "axisBorderShow": true,
+                        "axisBorderShow": false,
                         "axisCenteredZero": false,
-                        "axisColorMode": "series",
+                        "axisColorMode": "text",
+                        "axisGridShow": true,
                         "axisLabel": "",
-                        "axisPlacement": "auto",
+                        "axisPlacement": "left",
                         "barAlignment": 0,
                         "barWidthFactor": 0.6,
                         "drawStyle": "line",
-                        "fillOpacity": 32,
-                        "gradientMode": "hue",
+                        "fillOpacity": 6,
+                        "gradientMode": "scheme",
                         "hideFrom": {
                             "legend": false,
                             "tooltip": false,
@@ -57,11 +59,11 @@
                             "fill": "solid"
                         },
                         "lineWidth": 1,
-                        "pointSize": 5,
+                        "pointSize": 4,
                         "scaleDistribution": {
                             "type": "linear"
                         },
-                        "showPoints": "never",
+                        "showPoints": "auto",
                         "showValues": false,
                         "spanNulls": 3600000,
                         "stacking": {
@@ -72,13 +74,56 @@
                             "mode": "off"
                         }
                     },
-                    "displayName": "Temperature",
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "super-light-blue",
+                                "color": "text",
                                 "value": 0
+                            },
+                            {
+                                "color": "dark-purple",
+                                "value": -50
+                            },
+                            {
+                                "color": "semi-dark-purple",
+                                "value": -40
+                            },
+                            {
+                                "color": "dark-blue",
+                                "value": -30
+                            },
+                            {
+                                "color": "semi-dark-blue",
+                                "value": -20
+                            },
+                            {
+                                "color": "blue",
+                                "value": -10
+                            },
+                            {
+                                "color": "light-yellow",
+                                "value": 0
+                            },
+                            {
+                                "color": "semi-dark-yellow",
+                                "value": 10
+                            },
+                            {
+                                "color": "orange",
+                                "value": 20
+                            },
+                            {
+                                "color": "dark-orange",
+                                "value": 30
+                            },
+                            {
+                                "color": "semi-dark-red",
+                                "value": 40
+                            },
+                            {
+                                "color": "dark-red",
+                                "value": 50
                             }
                         ]
                     },
@@ -88,34 +133,19 @@
                     {
                         "matcher": {
                             "id": "byName",
-                            "options": "temperature"
-                        },
-                        "properties": [
-                            {
-                                "id": "color",
-                                "value": {
-                                    "fixedColor": "semi-dark-yellow",
-                                    "mode": "fixed"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "matcher": {
-                            "id": "byName",
                             "options": "dew_point"
                         },
                         "properties": [
                             {
                                 "id": "color",
                                 "value": {
-                                    "fixedColor": "semi-dark-green",
+                                    "fixedColor": "#40844080",
                                     "mode": "fixed"
                                 }
                             },
                             {
                                 "id": "displayName",
-                                "value": "Dew point"
+                                "value": "dew point"
                             }
                         ]
                     }
@@ -135,10 +165,11 @@
                 },
                 "legend": {
                     "calcs": [
-                        "last",
+                        "lastNotNull",
                         "min",
                         "max",
-                        "mean"
+                        "range",
+                        "count"
                     ],
                     "displayMode": "table",
                     "placement": "bottom",
@@ -147,7 +178,7 @@
                 "tooltip": {
                     "hideZeros": false,
                     "mode": "multi",
-                    "sort": "none"
+                    "sort": "desc"
                 }
             },
             "pluginVersion": "13.0.0-24139322263",
