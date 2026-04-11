@@ -445,14 +445,14 @@
                     "custom": {
                         "axisBorderShow": false,
                         "axisCenteredZero": false,
-                        "axisColorMode": "text",
+                        "axisColorMode": "series",
                         "axisGridShow": true,
                         "axisLabel": "",
                         "axisPlacement": "left",
                         "barAlignment": 0,
                         "barWidthFactor": 0.6,
                         "drawStyle": "line",
-                        "fillOpacity": 6,
+                        "fillOpacity": 4,
                         "gradientMode": "scheme",
                         "hideFrom": {
                             "legend": false,
@@ -570,13 +570,7 @@
                     "multiLane": false
                 },
                 "legend": {
-                    "calcs": [
-                        "lastNotNull",
-                        "min",
-                        "max",
-                        "range",
-                        "count"
-                    ],
+                    "calcs": [],
                     "displayMode": "table",
                     "placement": "bottom",
                     "showLegend": true
@@ -651,21 +645,24 @@
             "fieldConfig": {
                 "defaults": {
                     "color": {
-                        "mode": "palette-classic"
+                        "fixedColor": "dark-blue",
+                        "mode": "fixed",
+                        "seriesBy": "last"
                     },
                     "custom": {
-                        "axisBorderShow": true,
+                        "axisBorderShow": false,
                         "axisCenteredZero": false,
                         "axisColorMode": "series",
+                        "axisGridShow": true,
                         "axisLabel": "",
-                        "axisPlacement": "auto",
+                        "axisPlacement": "left",
                         "axisSoftMax": 100,
                         "axisSoftMin": 0,
                         "barAlignment": 0,
                         "barWidthFactor": 0.6,
                         "drawStyle": "line",
-                        "fillOpacity": 32,
-                        "gradientMode": "hue",
+                        "fillOpacity": 8,
+                        "gradientMode": "opacity",
                         "hideFrom": {
                             "legend": false,
                             "tooltip": false,
@@ -681,7 +678,7 @@
                         "scaleDistribution": {
                             "type": "linear"
                         },
-                        "showPoints": "never",
+                        "showPoints": "auto",
                         "showValues": false,
                         "spanNulls": 3600000,
                         "stacking": {
@@ -692,39 +689,19 @@
                             "mode": "off"
                         }
                     },
-                    "displayName": "Humidity",
+                    "max": 100,
+                    "min": 0,
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [
                             {
-                                "color": "green",
+                                "color": "semi-dark-blue",
                                 "value": 0
-                            },
-                            {
-                                "color": "red",
-                                "value": 80
                             }
                         ]
                     },
                     "unit": "humidity"
-                },
-                "overrides": [
-                    {
-                        "matcher": {
-                            "id": "byName",
-                            "options": "humidity"
-                        },
-                        "properties": [
-                            {
-                                "id": "color",
-                                "value": {
-                                    "fixedColor": "dark-blue",
-                                    "mode": "fixed"
-                                }
-                            }
-                        ]
-                    }
-                ]
+                }
             },
             "gridPos": {
                 "h": 9,
@@ -739,19 +716,14 @@
                     "multiLane": false
                 },
                 "legend": {
-                    "calcs": [
-                        "last",
-                        "min",
-                        "max",
-                        "mean"
-                    ],
+                    "calcs": [],
                     "displayMode": "table",
                     "placement": "bottom",
                     "showLegend": true
                 },
                 "tooltip": {
                     "hideZeros": false,
-                    "mode": "single",
+                    "mode": "multi",
                     "sort": "none"
                 }
             },
@@ -817,19 +789,21 @@
             "fieldConfig": {
                 "defaults": {
                     "color": {
-                        "mode": "palette-classic"
+                        "fixedColor": "semi-dark-orange",
+                        "mode": "fixed"
                     },
                     "custom": {
-                        "axisBorderShow": true,
+                        "axisBorderShow": false,
                         "axisCenteredZero": false,
                         "axisColorMode": "series",
+                        "axisGridShow": true,
                         "axisLabel": "",
-                        "axisPlacement": "auto",
+                        "axisPlacement": "left",
                         "barAlignment": 0,
                         "barWidthFactor": 0.6,
                         "drawStyle": "line",
-                        "fillOpacity": 32,
-                        "gradientMode": "hue",
+                        "fillOpacity": 8,
+                        "gradientMode": "opacity",
                         "hideFrom": {
                             "legend": false,
                             "tooltip": false,
@@ -838,11 +812,11 @@
                         "insertNulls": 3600000,
                         "lineInterpolation": "smooth",
                         "lineWidth": 1,
-                        "pointSize": 4,
+                        "pointSize": 5,
                         "scaleDistribution": {
                             "type": "linear"
                         },
-                        "showPoints": "never",
+                        "showPoints": "auto",
                         "showValues": false,
                         "spanNulls": 3600000,
                         "stacking": {
@@ -853,39 +827,17 @@
                             "mode": "off"
                         }
                     },
-                    "displayName": "Pressure",
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [
                             {
                                 "color": "green",
                                 "value": 0
-                            },
-                            {
-                                "color": "red",
-                                "value": 80
                             }
                         ]
                     },
                     "unit": "pressurehpa"
-                },
-                "overrides": [
-                    {
-                        "matcher": {
-                            "id": "byName",
-                            "options": "pressure"
-                        },
-                        "properties": [
-                            {
-                                "id": "color",
-                                "value": {
-                                    "fixedColor": "semi-dark-orange",
-                                    "mode": "fixed"
-                                }
-                            }
-                        ]
-                    }
-                ]
+                }
             },
             "gridPos": {
                 "h": 9,
@@ -900,19 +852,14 @@
                     "multiLane": false
                 },
                 "legend": {
-                    "calcs": [
-                        "last",
-                        "min",
-                        "max",
-                        "mean"
-                    ],
+                    "calcs": [],
                     "displayMode": "table",
                     "placement": "bottom",
                     "showLegend": true
                 },
                 "tooltip": {
                     "hideZeros": false,
-                    "mode": "single",
+                    "mode": "multi",
                     "sort": "none"
                 }
             },
@@ -978,220 +925,21 @@
             "fieldConfig": {
                 "defaults": {
                     "color": {
-                        "mode": "palette-classic-by-name"
-                    },
-                    "custom": {
-                        "axisBorderShow": true,
-                        "axisCenteredZero": false,
-                        "axisColorMode": "series",
-                        "axisLabel": "",
-                        "axisPlacement": "auto",
-                        "axisSoftMax": 8,
-                        "axisSoftMin": 0,
-                        "barAlignment": 0,
-                        "barWidthFactor": 0.6,
-                        "drawStyle": "line",
-                        "fillOpacity": 32,
-                        "gradientMode": "opacity",
-                        "hideFrom": {
-                            "legend": false,
-                            "tooltip": false,
-                            "viz": false
-                        },
-                        "insertNulls": 3600000,
-                        "lineInterpolation": "smooth",
-                        "lineStyle": {
-                            "fill": "solid"
-                        },
-                        "lineWidth": 1,
-                        "pointSize": 5,
-                        "scaleDistribution": {
-                            "type": "linear"
-                        },
-                        "showPoints": "never",
-                        "showValues": false,
-                        "spanNulls": 3600000,
-                        "stacking": {
-                            "group": "A",
-                            "mode": "none"
-                        },
-                        "thresholdsStyle": {
-                            "mode": "off"
-                        }
-                    },
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                            {
-                                "color": "green",
-                                "value": 0
-                            },
-                            {
-                                "color": "red",
-                                "value": 80
-                            }
-                        ]
-                    },
-                    "unit": "volt"
-                },
-                "overrides": [
-                    {
-                        "matcher": {
-                            "id": "byName",
-                            "options": "battery_voltage"
-                        },
-                        "properties": [
-                            {
-                                "id": "color",
-                                "value": {
-                                    "fixedColor": "dark-green",
-                                    "mode": "fixed"
-                                }
-                            },
-                            {
-                                "id": "displayName",
-                                "value": "Battery voltage"
-                            }
-                        ]
-                    },
-                    {
-                        "matcher": {
-                            "id": "byName",
-                            "options": "solar_panel_voltage"
-                        },
-                        "properties": [
-                            {
-                                "id": "color",
-                                "value": {
-                                    "fixedColor": "light-green",
-                                    "mode": "fixed"
-                                }
-                            },
-                            {
-                                "id": "displayName",
-                                "value": "Solar panel voltage"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "gridPos": {
-                "h": 9,
-                "w": 12,
-                "x": 12,
-                "y": 13
-            },
-            "id": 5,
-            "options": {
-                "annotations": {
-                    "clustering": -1,
-                    "multiLane": false
-                },
-                "legend": {
-                    "calcs": [
-                        "last",
-                        "min",
-                        "max",
-                        "mean"
-                    ],
-                    "displayMode": "table",
-                    "placement": "bottom",
-                    "showLegend": true
-                },
-                "timezone": [
-                    "browser"
-                ],
-                "tooltip": {
-                    "hideZeros": false,
-                    "mode": "multi",
-                    "sort": "none"
-                }
-            },
-            "pluginVersion": "13.1.0-24251769778",
-            "targets": [
-                {
-                    "dataset": "iox",
-                    "datasource": {
-                        "type": "influxdb",
-                        "uid": "bepu7jxdv591cc"
-                    },
-                    "editorMode": "builder",
-                    "format": "table",
-                    "rawSql": "SELECT \"battery_voltage\", \"solar_panel_voltage\", \"time\" FROM \"weather\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
-                    "refId": "A",
-                    "sql": {
-                        "columns": [
-                            {
-                                "parameters": [
-                                    {
-                                        "name": "battery_voltage",
-                                        "type": "functionParameter"
-                                    }
-                                ],
-                                "type": "function"
-                            },
-                            {
-                                "parameters": [
-                                    {
-                                        "name": "solar_panel_voltage",
-                                        "type": "functionParameter"
-                                    }
-                                ],
-                                "type": "function"
-                            },
-                            {
-                                "parameters": [
-                                    {
-                                        "name": "time",
-                                        "type": "functionParameter"
-                                    }
-                                ],
-                                "type": "function"
-                            }
-                        ],
-                        "groupBy": [
-                            {
-                                "property": {
-                                    "type": "string"
-                                },
-                                "type": "groupBy"
-                            }
-                        ],
-                        "whereJsonTree": {
-                            "children1": [],
-                            "id": "98b99889-0123-4456-b89a-b197d0baa939",
-                            "type": "group"
-                        }
-                    },
-                    "table": "weather"
-                }
-            ],
-            "title": "Voltages",
-            "transparent": true,
-            "type": "timeseries"
-        },
-        {
-            "datasource": {
-                "type": "influxdb",
-                "uid": "bepu7jxdv591cc"
-            },
-            "fieldConfig": {
-                "defaults": {
-                    "color": {
                         "fixedColor": "#c1bcbcbf",
                         "mode": "thresholds",
                         "seriesBy": "last"
                     },
                     "custom": {
-                        "axisBorderShow": true,
+                        "axisBorderShow": false,
                         "axisCenteredZero": false,
-                        "axisColorMode": "text",
+                        "axisColorMode": "series",
+                        "axisGridShow": true,
                         "axisLabel": "",
                         "axisPlacement": "auto",
                         "barAlignment": 0,
                         "barWidthFactor": 1,
                         "drawStyle": "line",
-                        "fillOpacity": 16,
+                        "fillOpacity": 4,
                         "gradientMode": "scheme",
                         "hideFrom": {
                             "legend": false,
@@ -1204,7 +952,7 @@
                             "fill": "solid"
                         },
                         "lineWidth": 1,
-                        "pointSize": 4,
+                        "pointSize": 5,
                         "scaleDistribution": {
                             "type": "linear"
                         },
@@ -1294,10 +1042,10 @@
                 ]
             },
             "gridPos": {
-                "h": 10,
-                "w": 24,
-                "x": 0,
-                "y": 22
+                "h": 9,
+                "w": 12,
+                "x": 12,
+                "y": 13
             },
             "id": 8,
             "options": {
@@ -1306,12 +1054,7 @@
                     "multiLane": false
                 },
                 "legend": {
-                    "calcs": [
-                        "last",
-                        "min",
-                        "max",
-                        "mean"
-                    ],
+                    "calcs": [],
                     "displayMode": "table",
                     "placement": "bottom",
                     "showLegend": true
@@ -1406,6 +1149,185 @@
             "fieldConfig": {
                 "defaults": {
                     "color": {
+                        "fixedColor": "green",
+                        "mode": "continuous-viridis"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "series",
+                        "axisGridShow": true,
+                        "axisLabel": "",
+                        "axisPlacement": "left",
+                        "axisSoftMax": 8,
+                        "axisSoftMin": 0,
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 4,
+                        "gradientMode": "scheme",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": 3600000,
+                        "lineInterpolation": "smooth",
+                        "lineStyle": {
+                            "fill": "solid"
+                        },
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "showValues": false,
+                        "spanNulls": 3600000,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            }
+                        ]
+                    },
+                    "unit": "volt"
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "battery_voltage"
+                        },
+                        "properties": [
+                            {
+                                "id": "displayName",
+                                "value": "battery voltage"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "solar_panel_voltage"
+                        },
+                        "properties": [
+                            {
+                                "id": "displayName",
+                                "value": "solar panel voltage"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 7,
+                "w": 24,
+                "x": 0,
+                "y": 22
+            },
+            "id": 5,
+            "options": {
+                "annotations": {
+                    "clustering": -1,
+                    "multiLane": false
+                },
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "table",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "timezone": [
+                    "browser"
+                ],
+                "tooltip": {
+                    "hideZeros": false,
+                    "mode": "multi",
+                    "sort": "desc"
+                }
+            },
+            "pluginVersion": "13.1.0-24251769778",
+            "targets": [
+                {
+                    "dataset": "iox",
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "bepu7jxdv591cc"
+                    },
+                    "editorMode": "builder",
+                    "format": "table",
+                    "rawSql": "SELECT \"battery_voltage\", \"solar_panel_voltage\", \"time\" FROM \"weather\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
+                    "refId": "A",
+                    "sql": {
+                        "columns": [
+                            {
+                                "parameters": [
+                                    {
+                                        "name": "battery_voltage",
+                                        "type": "functionParameter"
+                                    }
+                                ],
+                                "type": "function"
+                            },
+                            {
+                                "parameters": [
+                                    {
+                                        "name": "solar_panel_voltage",
+                                        "type": "functionParameter"
+                                    }
+                                ],
+                                "type": "function"
+                            },
+                            {
+                                "parameters": [
+                                    {
+                                        "name": "time",
+                                        "type": "functionParameter"
+                                    }
+                                ],
+                                "type": "function"
+                            }
+                        ],
+                        "groupBy": [
+                            {
+                                "property": {
+                                    "type": "string"
+                                },
+                                "type": "groupBy"
+                            }
+                        ],
+                        "whereJsonTree": {
+                            "children1": [],
+                            "id": "98b99889-0123-4456-b89a-b197d0baa939",
+                            "type": "group"
+                        }
+                    },
+                    "table": "weather"
+                }
+            ],
+            "title": "Voltages",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "bepu7jxdv591cc"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
                         "mode": "palette-classic"
                     },
                     "custom": {
@@ -1482,7 +1404,7 @@
                 "h": 9,
                 "w": 12,
                 "x": 0,
-                "y": 32
+                "y": 29
             },
             "id": 7,
             "options": {
@@ -1648,7 +1570,7 @@
                 "h": 9,
                 "w": 12,
                 "x": 12,
-                "y": 32
+                "y": 29
             },
             "id": 6,
             "options": {
