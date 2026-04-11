@@ -109,6 +109,10 @@
                                         }
                                     ]
                                 }
+                            },
+                            {
+                                "id": "unit",
+                                "value": "celsius"
                             }
                         ]
                     },
@@ -125,6 +129,10 @@
                                     "fixedColor": "#408440",
                                     "mode": "fixed"
                                 }
+                            },
+                            {
+                                "id": "unit",
+                                "value": "celsius"
                             }
                         ]
                     },
@@ -148,6 +156,10 @@
                             {
                                 "id": "max",
                                 "value": 100
+                            },
+                            {
+                                "id": "unit",
+                                "value": "percent"
                             }
                         ]
                     },
@@ -172,6 +184,10 @@
                             {
                                 "id": "min",
                                 "value": 300
+                            },
+                            {
+                                "id": "unit",
+                                "value": "pressurehpa"
                             }
                         ]
                     }
@@ -192,7 +208,7 @@
                 "percentChangeColorMode": "standard",
                 "reduceOptions": {
                     "calcs": [
-                        "lastNotNull"
+                        "last"
                     ],
                     "fields": "",
                     "values": false
@@ -213,7 +229,7 @@
                     "editorMode": "code",
                     "format": "table",
                     "rawQuery": true,
-                    "rawSql": "SELECT \"temperature\", \"dew_point\", \"humidity\", \"pressure\" FROM \"weather\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
+                    "rawSql": "SELECT temperature, dew_point, humidity, pressure, time\nFROM weather\nWHERE time >= $__timeFrom AND time <= $__timeTo\nORDER BY time DESC\nLIMIT 1",
                     "refId": "A",
                     "sql": {
                         "columns": [
@@ -331,7 +347,7 @@
                     "editorMode": "code",
                     "format": "table",
                     "rawQuery": true,
-                    "rawSql": "SELECT \"mc_pm1_0\", \"mc_pm2_5\", \"mc_pm10_0\" FROM \"weather\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
+                    "rawSql": "SELECT mc_pm1_0, mc_pm2_5, mc_pm10_0\nFROM weather\nWHERE time >= $__timeFrom AND time <= $__timeTo AND mc_pm1_0 IS NOT NULL\nORDER BY time DESC\nLIMIT 1\n",
                     "refId": "A",
                     "sql": {
                         "columns": [
