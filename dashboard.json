@@ -133,6 +133,10 @@
                             {
                                 "id": "unit",
                                 "value": "celsius"
+                            },
+                            {
+                                "id": "displayName",
+                                "value": "dew point"
                             }
                         ]
                     },
@@ -229,7 +233,7 @@
                     "editorMode": "code",
                     "format": "table",
                     "rawQuery": true,
-                    "rawSql": "SELECT temperature, dew_point, humidity, pressure, time\nFROM weather\nWHERE time >= $__timeFrom AND time <= $__timeTo\nORDER BY time DESC\nLIMIT 1",
+                    "rawSql": "SELECT temperature, dew_point, humidity, pressure, time\nFROM weather\nORDER BY time DESC\nLIMIT 1",
                     "refId": "A",
                     "sql": {
                         "columns": [
@@ -264,7 +268,7 @@
                     "table": "weather"
                 }
             ],
-            "title": "Current Readings",
+            "title": "Latest",
             "transparent": true,
             "type": "stat"
         },
@@ -279,7 +283,7 @@
                         "fixedColor": "text",
                         "mode": "thresholds"
                     },
-                    "decimals": 0,
+                    "decimals": 1,
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [
@@ -309,7 +313,48 @@
                             }
                         ]
                     }
-                }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "mc_pm1_0",
+                            "scope": "series"
+                        },
+                        "properties": [
+                            {
+                                "id": "displayName",
+                                "value": "PM 1.0"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "mc_pm2_5",
+                            "scope": "series"
+                        },
+                        "properties": [
+                            {
+                                "id": "displayName",
+                                "value": "PM 2.5"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "mc_pm10_0",
+                            "scope": "series"
+                        },
+                        "properties": [
+                            {
+                                "id": "displayName",
+                                "value": "PM 10"
+                            }
+                        ]
+                    }
+                ]
             },
             "gridPos": {
                 "h": 4,
@@ -347,7 +392,7 @@
                     "editorMode": "code",
                     "format": "table",
                     "rawQuery": true,
-                    "rawSql": "SELECT mc_pm1_0, mc_pm2_5, mc_pm10_0\nFROM weather\nWHERE time >= $__timeFrom AND time <= $__timeTo AND mc_pm1_0 IS NOT NULL\nORDER BY time DESC\nLIMIT 1\n",
+                    "rawSql": "SELECT mc_pm1_0, mc_pm2_5, mc_pm10_0\nFROM weather\nWHERE mc_pm1_0 IS NOT NULL\nORDER BY time DESC\nLIMIT 1\n",
                     "refId": "A",
                     "sql": {
                         "columns": [
@@ -382,7 +427,7 @@
                     "table": "weather"
                 }
             ],
-            "title": "Current Readings",
+            "title": "Latest",
             "transparent": true,
             "type": "stat"
         },
@@ -1688,7 +1733,7 @@
     "refresh": "",
     "schemaVersion": 42,
     "time": {
-        "from": "now-24h",
+        "from": "now-2d",
         "to": "now"
     },
     "timepicker": {
