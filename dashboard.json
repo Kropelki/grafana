@@ -113,6 +113,10 @@
                             {
                                 "id": "unit",
                                 "value": "celsius"
+                            },
+                            {
+                                "id": "decimals",
+                                "value": 2
                             }
                         ]
                     },
@@ -137,6 +141,10 @@
                             {
                                 "id": "displayName",
                                 "value": "dew point"
+                            },
+                            {
+                                "id": "decimals",
+                                "value": 2
                             }
                         ]
                     },
@@ -164,6 +172,10 @@
                             {
                                 "id": "unit",
                                 "value": "percent"
+                            },
+                            {
+                                "id": "decimals",
+                                "value": 0
                             }
                         ]
                     },
@@ -192,6 +204,10 @@
                             {
                                 "id": "unit",
                                 "value": "pressurehpa"
+                            },
+                            {
+                                "id": "decimals",
+                                "value": 0
                             }
                         ]
                     }
