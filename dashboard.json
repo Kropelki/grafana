@@ -238,7 +238,7 @@
                 "textMode": "value_and_name",
                 "wideLayout": true
             },
-            "pluginVersion": "13.1.0-24251769778",
+            "pluginVersion": "13.1.0-25308208488",
             "targets": [
                 {
                     "dataset": "iox",
@@ -397,7 +397,7 @@
                 "textMode": "value_and_name",
                 "wideLayout": false
             },
-            "pluginVersion": "13.1.0-24251769778",
+            "pluginVersion": "13.1.0-25308208488",
             "targets": [
                 {
                     "dataset": "iox",
@@ -597,7 +597,7 @@
                     "sort": "desc"
                 }
             },
-            "pluginVersion": "13.1.0-24251769778",
+            "pluginVersion": "13.1.0-25308208488",
             "targets": [
                 {
                     "dataset": "iox",
@@ -743,7 +743,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.1.0-24251769778",
+            "pluginVersion": "13.1.0-25308208488",
             "targets": [
                 {
                     "dataset": "iox",
@@ -880,7 +880,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.1.0-24251769778",
+            "pluginVersion": "13.1.0-25308208488",
             "targets": [
                 {
                     "dataset": "iox",
@@ -1086,7 +1086,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.1.0-24251769778",
+            "pluginVersion": "13.1.0-25308208488",
             "targets": [
                 {
                     "dataset": "iox",
@@ -1275,7 +1275,7 @@
                     "sort": "desc"
                 }
             },
-            "pluginVersion": "13.1.0-24251769778",
+            "pluginVersion": "13.1.0-25308208488",
             "targets": [
                 {
                     "dataset": "iox",
@@ -1447,7 +1447,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.1.0-24251769778",
+            "pluginVersion": "13.1.0-25308208488",
             "targets": [
                 {
                     "dataset": "iox",
@@ -1613,7 +1613,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.1.0-24251769778",
+            "pluginVersion": "13.1.0-25308208488",
             "targets": [
                 {
                     "dataset": "iox",
@@ -1691,6 +1691,6 @@
         ]
     },
     "timezone": "browser",
-    "title": "Kropelki Station | Weather",
+    "title": "Kropelki • InfluxDB • 30-days",
     "weekStart": "monday"
 }
