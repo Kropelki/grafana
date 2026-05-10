@@ -843,6 +843,7 @@
                             "mode": "off"
                         }
                     },
+                    "decimals": 0,
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [
@@ -887,8 +888,9 @@
                         "type": "influxdb",
                         "uid": "bepu7jxdv591cc"
                     },
-                    "editorMode": "builder",
+                    "editorMode": "code",
                     "format": "table",
+                    "rawQuery": true,
                     "rawSql": "SELECT \"pressure\", \"time\" FROM \"weather\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
                     "refId": "A",
                     "sql": {
