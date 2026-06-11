@@ -238,7 +238,7 @@
                 "textMode": "value_and_name",
                 "wideLayout": true
             },
-            "pluginVersion": "13.1.0-25308208488",
+            "pluginVersion": "13.1.0-26978683508",
             "targets": [
                 {
                     "dataset": "iox",
@@ -397,7 +397,7 @@
                 "textMode": "value_and_name",
                 "wideLayout": false
             },
-            "pluginVersion": "13.1.0-25308208488",
+            "pluginVersion": "13.1.0-26978683508",
             "targets": [
                 {
                     "dataset": "iox",
@@ -574,7 +574,7 @@
                 ]
             },
             "gridPos": {
-                "h": 9,
+                "h": 12,
                 "w": 12,
                 "x": 0,
                 "y": 4
@@ -586,8 +586,12 @@
                     "multiLane": false
                 },
                 "legend": {
-                    "calcs": [],
+                    "calcs": [
+                        "min",
+                        "max"
+                    ],
                     "displayMode": "table",
+                    "enableFacetedFilter": false,
                     "placement": "bottom",
                     "showLegend": true
                 },
@@ -597,7 +601,7 @@
                     "sort": "desc"
                 }
             },
-            "pluginVersion": "13.1.0-25308208488",
+            "pluginVersion": "13.1.0-26978683508",
             "targets": [
                 {
                     "dataset": "iox",
@@ -650,288 +654,6 @@
                 }
             ],
             "title": "Temperature",
-            "transparent": true,
-            "type": "timeseries"
-        },
-        {
-            "datasource": {
-                "type": "influxdb",
-                "uid": "bepu7jxdv591cc"
-            },
-            "fieldConfig": {
-                "defaults": {
-                    "color": {
-                        "fixedColor": "dark-blue",
-                        "mode": "fixed",
-                        "seriesBy": "last"
-                    },
-                    "custom": {
-                        "axisBorderShow": false,
-                        "axisCenteredZero": false,
-                        "axisColorMode": "series",
-                        "axisGridShow": true,
-                        "axisLabel": "",
-                        "axisPlacement": "left",
-                        "axisSoftMax": 100,
-                        "axisSoftMin": 0,
-                        "barAlignment": 0,
-                        "barWidthFactor": 0.6,
-                        "drawStyle": "line",
-                        "fillOpacity": 8,
-                        "gradientMode": "opacity",
-                        "hideFrom": {
-                            "legend": false,
-                            "tooltip": false,
-                            "viz": false
-                        },
-                        "insertNulls": 3600000,
-                        "lineInterpolation": "smooth",
-                        "lineStyle": {
-                            "fill": "solid"
-                        },
-                        "lineWidth": 1,
-                        "pointSize": 5,
-                        "scaleDistribution": {
-                            "type": "linear"
-                        },
-                        "showPoints": "auto",
-                        "showValues": false,
-                        "spanNulls": 3600000,
-                        "stacking": {
-                            "group": "A",
-                            "mode": "none"
-                        },
-                        "thresholdsStyle": {
-                            "mode": "off"
-                        }
-                    },
-                    "max": 100,
-                    "min": 0,
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                            {
-                                "color": "semi-dark-blue",
-                                "value": 0
-                            }
-                        ]
-                    },
-                    "unit": "humidity"
-                }
-            },
-            "gridPos": {
-                "h": 9,
-                "w": 12,
-                "x": 12,
-                "y": 4
-            },
-            "id": 2,
-            "options": {
-                "annotations": {
-                    "clustering": -1,
-                    "multiLane": false
-                },
-                "legend": {
-                    "calcs": [],
-                    "displayMode": "table",
-                    "placement": "bottom",
-                    "showLegend": true
-                },
-                "tooltip": {
-                    "hideZeros": false,
-                    "mode": "multi",
-                    "sort": "none"
-                }
-            },
-            "pluginVersion": "13.1.0-25308208488",
-            "targets": [
-                {
-                    "dataset": "iox",
-                    "datasource": {
-                        "type": "influxdb",
-                        "uid": "bepu7jxdv591cc"
-                    },
-                    "editorMode": "builder",
-                    "format": "table",
-                    "rawSql": "SELECT \"humidity\", \"time\" FROM \"weather\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
-                    "refId": "A",
-                    "sql": {
-                        "columns": [
-                            {
-                                "parameters": [
-                                    {
-                                        "name": "humidity",
-                                        "type": "functionParameter"
-                                    }
-                                ],
-                                "type": "function"
-                            },
-                            {
-                                "parameters": [
-                                    {
-                                        "name": "time",
-                                        "type": "functionParameter"
-                                    }
-                                ],
-                                "type": "function"
-                            }
-                        ],
-                        "groupBy": [
-                            {
-                                "property": {
-                                    "type": "string"
-                                },
-                                "type": "groupBy"
-                            }
-                        ],
-                        "whereJsonTree": {
-                            "children1": [],
-                            "id": "98b99889-0123-4456-b89a-b197d0baa939",
-                            "type": "group"
-                        }
-                    },
-                    "table": "weather"
-                }
-            ],
-            "title": "Humidity",
-            "transparent": true,
-            "type": "timeseries"
-        },
-        {
-            "datasource": {
-                "type": "influxdb",
-                "uid": "bepu7jxdv591cc"
-            },
-            "fieldConfig": {
-                "defaults": {
-                    "color": {
-                        "fixedColor": "semi-dark-orange",
-                        "mode": "fixed"
-                    },
-                    "custom": {
-                        "axisBorderShow": false,
-                        "axisCenteredZero": false,
-                        "axisColorMode": "series",
-                        "axisGridShow": true,
-                        "axisLabel": "",
-                        "axisPlacement": "left",
-                        "barAlignment": 0,
-                        "barWidthFactor": 0.6,
-                        "drawStyle": "line",
-                        "fillOpacity": 8,
-                        "gradientMode": "opacity",
-                        "hideFrom": {
-                            "legend": false,
-                            "tooltip": false,
-                            "viz": false
-                        },
-                        "insertNulls": 3600000,
-                        "lineInterpolation": "smooth",
-                        "lineWidth": 1,
-                        "pointSize": 5,
-                        "scaleDistribution": {
-                            "type": "linear"
-                        },
-                        "showPoints": "auto",
-                        "showValues": false,
-                        "spanNulls": 3600000,
-                        "stacking": {
-                            "group": "A",
-                            "mode": "none"
-                        },
-                        "thresholdsStyle": {
-                            "mode": "off"
-                        }
-                    },
-                    "decimals": 0,
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                            {
-                                "color": "green",
-                                "value": 0
-                            }
-                        ]
-                    },
-                    "unit": "pressurehpa"
-                }
-            },
-            "gridPos": {
-                "h": 9,
-                "w": 12,
-                "x": 0,
-                "y": 13
-            },
-            "id": 3,
-            "options": {
-                "annotations": {
-                    "clustering": -1,
-                    "multiLane": false
-                },
-                "legend": {
-                    "calcs": [],
-                    "displayMode": "table",
-                    "placement": "bottom",
-                    "showLegend": true
-                },
-                "tooltip": {
-                    "hideZeros": false,
-                    "mode": "multi",
-                    "sort": "none"
-                }
-            },
-            "pluginVersion": "13.1.0-25308208488",
-            "targets": [
-                {
-                    "dataset": "iox",
-                    "datasource": {
-                        "type": "influxdb",
-                        "uid": "bepu7jxdv591cc"
-                    },
-                    "editorMode": "code",
-                    "format": "table",
-                    "rawQuery": true,
-                    "rawSql": "SELECT \"pressure\", \"time\" FROM \"weather\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
-                    "refId": "A",
-                    "sql": {
-                        "columns": [
-                            {
-                                "parameters": [
-                                    {
-                                        "name": "pressure",
-                                        "type": "functionParameter"
-                                    }
-                                ],
-                                "type": "function"
-                            },
-                            {
-                                "parameters": [
-                                    {
-                                        "name": "time",
-                                        "type": "functionParameter"
-                                    }
-                                ],
-                                "type": "function"
-                            }
-                        ],
-                        "groupBy": [
-                            {
-                                "property": {
-                                    "type": "string"
-                                },
-                                "type": "groupBy"
-                            }
-                        ],
-                        "whereJsonTree": {
-                            "children1": [],
-                            "id": "98b99889-0123-4456-b89a-b197d0baa939",
-                            "type": "group"
-                        }
-                    },
-                    "table": "weather"
-                }
-            ],
-            "title": "Pressure",
             "transparent": true,
             "type": "timeseries"
         },
@@ -1060,10 +782,10 @@
                 ]
             },
             "gridPos": {
-                "h": 9,
+                "h": 12,
                 "w": 12,
                 "x": 12,
-                "y": 13
+                "y": 4
             },
             "id": 8,
             "options": {
@@ -1072,8 +794,12 @@
                     "multiLane": false
                 },
                 "legend": {
-                    "calcs": [],
+                    "calcs": [
+                        "min",
+                        "max"
+                    ],
                     "displayMode": "table",
+                    "enableFacetedFilter": false,
                     "placement": "bottom",
                     "showLegend": true
                 },
@@ -1086,7 +812,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.1.0-25308208488",
+            "pluginVersion": "13.1.0-26978683508",
             "targets": [
                 {
                     "dataset": "iox",
@@ -1156,6 +882,296 @@
                 }
             ],
             "title": "Particulate Matter",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "bepu7jxdv591cc"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "dark-blue",
+                        "mode": "fixed",
+                        "seriesBy": "last"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "series",
+                        "axisGridShow": true,
+                        "axisLabel": "",
+                        "axisPlacement": "left",
+                        "axisSoftMax": 100,
+                        "axisSoftMin": 0,
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 8,
+                        "gradientMode": "opacity",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": 3600000,
+                        "lineInterpolation": "smooth",
+                        "lineStyle": {
+                            "fill": "solid"
+                        },
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "showValues": false,
+                        "spanNulls": 3600000,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "semi-dark-blue",
+                                "value": 0
+                            }
+                        ]
+                    },
+                    "unit": "humidity"
+                }
+            },
+            "gridPos": {
+                "h": 9,
+                "w": 12,
+                "x": 0,
+                "y": 16
+            },
+            "id": 2,
+            "options": {
+                "annotations": {
+                    "clustering": -1,
+                    "multiLane": false
+                },
+                "legend": {
+                    "calcs": [
+                        "min",
+                        "max"
+                    ],
+                    "displayMode": "table",
+                    "enableFacetedFilter": false,
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "hideZeros": false,
+                    "mode": "multi",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "13.1.0-26978683508",
+            "targets": [
+                {
+                    "dataset": "iox",
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "bepu7jxdv591cc"
+                    },
+                    "editorMode": "builder",
+                    "format": "table",
+                    "rawSql": "SELECT \"humidity\", \"time\" FROM \"weather\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
+                    "refId": "A",
+                    "sql": {
+                        "columns": [
+                            {
+                                "parameters": [
+                                    {
+                                        "name": "humidity",
+                                        "type": "functionParameter"
+                                    }
+                                ],
+                                "type": "function"
+                            },
+                            {
+                                "parameters": [
+                                    {
+                                        "name": "time",
+                                        "type": "functionParameter"
+                                    }
+                                ],
+                                "type": "function"
+                            }
+                        ],
+                        "groupBy": [
+                            {
+                                "property": {
+                                    "type": "string"
+                                },
+                                "type": "groupBy"
+                            }
+                        ],
+                        "whereJsonTree": {
+                            "children1": [],
+                            "id": "98b99889-0123-4456-b89a-b197d0baa939",
+                            "type": "group"
+                        }
+                    },
+                    "table": "weather"
+                }
+            ],
+            "title": "Humidity",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "influxdb",
+                "uid": "bepu7jxdv591cc"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "semi-dark-orange",
+                        "mode": "fixed"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "series",
+                        "axisGridShow": true,
+                        "axisLabel": "",
+                        "axisPlacement": "left",
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 8,
+                        "gradientMode": "opacity",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": 3600000,
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "showValues": false,
+                        "spanNulls": 3600000,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "decimals": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": 0
+                            }
+                        ]
+                    },
+                    "unit": "pressurehpa"
+                }
+            },
+            "gridPos": {
+                "h": 9,
+                "w": 12,
+                "x": 12,
+                "y": 16
+            },
+            "id": 3,
+            "options": {
+                "annotations": {
+                    "clustering": -1,
+                    "multiLane": false
+                },
+                "legend": {
+                    "calcs": [
+                        "min",
+                        "max"
+                    ],
+                    "displayMode": "table",
+                    "enableFacetedFilter": false,
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "hideZeros": false,
+                    "mode": "multi",
+                    "sort": "none"
+                }
+            },
+            "pluginVersion": "13.1.0-26978683508",
+            "targets": [
+                {
+                    "dataset": "iox",
+                    "datasource": {
+                        "type": "influxdb",
+                        "uid": "bepu7jxdv591cc"
+                    },
+                    "editorMode": "code",
+                    "format": "table",
+                    "rawQuery": true,
+                    "rawSql": "SELECT \"pressure\", \"time\" FROM \"weather\" WHERE \"time\" >= $__timeFrom AND \"time\" <= $__timeTo ",
+                    "refId": "A",
+                    "sql": {
+                        "columns": [
+                            {
+                                "parameters": [
+                                    {
+                                        "name": "pressure",
+                                        "type": "functionParameter"
+                                    }
+                                ],
+                                "type": "function"
+                            },
+                            {
+                                "parameters": [
+                                    {
+                                        "name": "time",
+                                        "type": "functionParameter"
+                                    }
+                                ],
+                                "type": "function"
+                            }
+                        ],
+                        "groupBy": [
+                            {
+                                "property": {
+                                    "type": "string"
+                                },
+                                "type": "groupBy"
+                            }
+                        ],
+                        "whereJsonTree": {
+                            "children1": [],
+                            "id": "98b99889-0123-4456-b89a-b197d0baa939",
+                            "type": "group"
+                        }
+                    },
+                    "table": "weather"
+                }
+            ],
+            "title": "Pressure",
             "transparent": true,
             "type": "timeseries"
         },
@@ -1252,7 +1268,7 @@
                 "h": 7,
                 "w": 24,
                 "x": 0,
-                "y": 22
+                "y": 25
             },
             "id": 5,
             "options": {
@@ -1261,8 +1277,15 @@
                     "multiLane": false
                 },
                 "legend": {
-                    "calcs": [],
+                    "calcs": [
+                        "last",
+                        "min",
+                        "max",
+                        "mean",
+                        "median"
+                    ],
                     "displayMode": "table",
+                    "enableFacetedFilter": false,
                     "placement": "bottom",
                     "showLegend": true
                 },
@@ -1275,7 +1298,7 @@
                     "sort": "desc"
                 }
             },
-            "pluginVersion": "13.1.0-25308208488",
+            "pluginVersion": "13.1.0-26978683508",
             "targets": [
                 {
                     "dataset": "iox",
@@ -1422,7 +1445,7 @@
                 "h": 9,
                 "w": 12,
                 "x": 0,
-                "y": 29
+                "y": 32
             },
             "id": 7,
             "options": {
@@ -1438,6 +1461,7 @@
                         "mean"
                     ],
                     "displayMode": "table",
+                    "enableFacetedFilter": false,
                     "placement": "bottom",
                     "showLegend": true
                 },
@@ -1447,7 +1471,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.1.0-25308208488",
+            "pluginVersion": "13.1.0-26978683508",
             "targets": [
                 {
                     "dataset": "iox",
@@ -1588,7 +1612,7 @@
                 "h": 9,
                 "w": 12,
                 "x": 12,
-                "y": 29
+                "y": 32
             },
             "id": 6,
             "options": {
@@ -1604,6 +1628,7 @@
                         "mean"
                     ],
                     "displayMode": "table",
+                    "enableFacetedFilter": false,
                     "placement": "bottom",
                     "showLegend": true
                 },
@@ -1613,7 +1638,7 @@
                     "sort": "none"
                 }
             },
-            "pluginVersion": "13.1.0-25308208488",
+            "pluginVersion": "13.1.0-26978683508",
             "targets": [
                 {
                     "dataset": "iox",
