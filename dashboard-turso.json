@@ -1,0 +1,880 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": {
+                    "type": "grafana",
+                    "uid": "grafana"
+                },
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 2,
+    "liveNow": false,
+    "panels": [
+        {
+            "datasource": {
+                "type": "yesoreyeram-infinity-datasource",
+                "uid": "aeusl4w6pt1xcf"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "text",
+                        "mode": "thresholds"
+                    },
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            { "color": "text", "value": 0 }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": { "id": "byName", "options": "temperature" },
+                        "properties": [
+                            {
+                                "id": "thresholds",
+                                "value": {
+                                    "mode": "absolute",
+                                    "steps": [
+                                        { "color": "text", "value": 0 },
+                                        { "color": "dark-purple", "value": -50 },
+                                        { "color": "semi-dark-purple", "value": -40 },
+                                        { "color": "dark-blue", "value": -30 },
+                                        { "color": "semi-dark-blue", "value": -20 },
+                                        { "color": "blue", "value": -10 },
+                                        { "color": "light-yellow", "value": 0 },
+                                        { "color": "semi-dark-yellow", "value": 10 },
+                                        { "color": "orange", "value": 20 },
+                                        { "color": "dark-orange", "value": 30 },
+                                        { "color": "semi-dark-red", "value": 40 },
+                                        { "color": "dark-red", "value": 50 }
+                                    ]
+                                }
+                            },
+                            { "id": "unit", "value": "celsius" },
+                            { "id": "decimals", "value": 2 }
+                        ]
+                    },
+                    {
+                        "matcher": { "id": "byName", "options": "dew_point" },
+                        "properties": [
+                            { "id": "color", "value": { "fixedColor": "#408440", "mode": "fixed" } },
+                            { "id": "unit", "value": "celsius" },
+                            { "id": "displayName", "value": "dew point" },
+                            { "id": "decimals", "value": 2 }
+                        ]
+                    },
+                    {
+                        "matcher": { "id": "byName", "options": "humidity" },
+                        "properties": [
+                            { "id": "color", "value": { "mode": "continuous-YlBl" } },
+                            { "id": "min", "value": 0 },
+                            { "id": "max", "value": 100 },
+                            { "id": "unit", "value": "percent" },
+                            { "id": "decimals", "value": 0 }
+                        ]
+                    },
+                    {
+                        "matcher": { "id": "byName", "options": "pressure" },
+                        "properties": [
+                            { "id": "color", "value": { "fixedColor": "red", "mode": "continuous-GrYlRd" } },
+                            { "id": "max", "value": 1100 },
+                            { "id": "min", "value": 300 },
+                            { "id": "unit", "value": "pressurehpa" },
+                            { "id": "decimals", "value": 0 }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": { "h": 4, "w": 12, "x": 0, "y": 0 },
+            "id": 9,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "center",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": { "calcs": ["last"], "fields": "", "values": false },
+                "showPercentChange": false,
+                "text": {},
+                "textMode": "value_and_name",
+                "wideLayout": true
+            },
+            "pluginVersion": "13.1.0-25308208488",
+            "targets": [
+                {
+                    "columns": [
+                        { "selector": "temperature", "text": "temperature", "type": "number" },
+                        { "selector": "dew_point", "text": "dew_point", "type": "number" },
+                        { "selector": "humidity", "text": "humidity", "type": "number" },
+                        { "selector": "pressure", "text": "pressure", "type": "number" }
+                    ],
+                    "datasource": { "type": "yesoreyeram-infinity-datasource", "uid": "aeusl4w6pt1xcf" },
+                    "filters": [],
+                    "format": "table",
+                    "global_query_id": "",
+                    "parser": "jq-backend",
+                    "refId": "A",
+                    "root_selector": ".results[0].response.result as $r\n| $r.rows\n| map(\n    [ $r.cols, . ]\n    | transpose\n    | map({\n        (.[0].name):\n          if (.[1] | type) == \"object\" then\n            if (.[1].type == \"null\") then\n              null\n            elif (.[1] | has(\"value\")) then\n              .[1].value\n            else\n              .[1]\n            end\n          else\n            .[1]\n          end\n      })\n    | add\n  )\n",
+                    "source": "url",
+                    "type": "json",
+                    "url": "__TURSO_PIPELINE_URL__",
+                    "url_options": {
+                        "body_content_type": "application/json",
+                        "body_type": "raw",
+                        "data": "{\r\n  \"requests\": [\r\n    {\r\n      \"type\": \"execute\",\r\n      \"stmt\": {\r\n        \"sql\": \"SELECT temperature, dew_point, humidity, pressure FROM weather ORDER BY timestamp DESC LIMIT 1\"\r\n      }\r\n    },\r\n    { \"type\": \"close\" }\r\n  ]\r\n}\r\n",
+                        "headers": [],
+                        "method": "POST",
+                        "params": []
+                    }
+                }
+            ],
+            "title": "Latest",
+            "transparent": true,
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "yesoreyeram-infinity-datasource",
+                "uid": "aeusl4w6pt1xcf"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "fixedColor": "text", "mode": "thresholds" },
+                    "decimals": 1,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            { "color": "dark-green", "value": 0 },
+                            { "color": "green", "value": 15 },
+                            { "color": "dark-yellow", "value": 35 },
+                            { "color": "dark-orange", "value": 55 },
+                            { "color": "red", "value": 75 },
+                            { "color": "dark-red", "value": 110 }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": { "id": "byName", "options": "mc_pm1_0" },
+                        "properties": [{ "id": "displayName", "value": "PM 1.0" }]
+                    },
+                    {
+                        "matcher": { "id": "byName", "options": "mc_pm2_5" },
+                        "properties": [{ "id": "displayName", "value": "PM 2.5" }]
+                    },
+                    {
+                        "matcher": { "id": "byName", "options": "mc_pm10_0" },
+                        "properties": [{ "id": "displayName", "value": "PM 10" }]
+                    }
+                ]
+            },
+            "gridPos": { "h": 4, "w": 12, "x": 12, "y": 0 },
+            "id": 10,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "center",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+                "showPercentChange": false,
+                "text": {},
+                "textMode": "value_and_name",
+                "wideLayout": false
+            },
+            "pluginVersion": "13.1.0-25308208488",
+            "targets": [
+                {
+                    "columns": [
+                        { "selector": "mc_pm1_0", "text": "mc_pm1_0", "type": "number" },
+                        { "selector": "mc_pm2_5", "text": "mc_pm2_5", "type": "number" },
+                        { "selector": "mc_pm10_0", "text": "mc_pm10_0", "type": "number" }
+                    ],
+                    "datasource": { "type": "yesoreyeram-infinity-datasource", "uid": "aeusl4w6pt1xcf" },
+                    "filters": [],
+                    "format": "table",
+                    "global_query_id": "",
+                    "parser": "jq-backend",
+                    "refId": "A",
+                    "root_selector": ".results[0].response.result as $r\n| $r.rows\n| map(\n    [ $r.cols, . ]\n    | transpose\n    | map({\n        (.[0].name):\n          if (.[1] | type) == \"object\" then\n            if (.[1].type == \"null\") then\n              null\n            elif (.[1] | has(\"value\")) then\n              .[1].value\n            else\n              .[1]\n            end\n          else\n            .[1]\n          end\n      })\n    | add\n  )\n",
+                    "source": "url",
+                    "type": "json",
+                    "url": "__TURSO_PIPELINE_URL__",
+                    "url_options": {
+                        "body_content_type": "application/json",
+                        "body_type": "raw",
+                        "data": "{\r\n  \"requests\": [\r\n    {\r\n      \"type\": \"execute\",\r\n      \"stmt\": {\r\n        \"sql\": \"SELECT mc_pm1_0, mc_pm2_5, mc_pm10_0 FROM weather WHERE mc_pm1_0 IS NOT NULL ORDER BY timestamp DESC LIMIT 1\"\r\n      }\r\n    },\r\n    { \"type\": \"close\" }\r\n  ]\r\n}\r\n",
+                        "headers": [],
+                        "method": "POST",
+                        "params": []
+                    }
+                }
+            ],
+            "title": "Latest",
+            "transparent": true,
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "yesoreyeram-infinity-datasource",
+                "uid": "aeusl4w6pt1xcf"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "mode": "thresholds", "seriesBy": "last" },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "series",
+                        "axisGridShow": true,
+                        "axisLabel": "",
+                        "axisPlacement": "left",
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 4,
+                        "gradientMode": "scheme",
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                        "insertNulls": 3600000,
+                        "lineInterpolation": "smooth",
+                        "lineStyle": { "fill": "solid" },
+                        "lineWidth": 1,
+                        "pointSize": 4,
+                        "scaleDistribution": { "type": "linear" },
+                        "showPoints": "auto",
+                        "showValues": false,
+                        "spanNulls": 3600000,
+                        "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
+                    },
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            { "color": "text", "value": 0 },
+                            { "color": "dark-purple", "value": -50 },
+                            { "color": "semi-dark-purple", "value": -40 },
+                            { "color": "dark-blue", "value": -30 },
+                            { "color": "semi-dark-blue", "value": -20 },
+                            { "color": "blue", "value": -10 },
+                            { "color": "light-yellow", "value": 0 },
+                            { "color": "semi-dark-yellow", "value": 10 },
+                            { "color": "orange", "value": 20 },
+                            { "color": "dark-orange", "value": 30 },
+                            { "color": "semi-dark-red", "value": 40 },
+                            { "color": "dark-red", "value": 50 }
+                        ]
+                    },
+                    "unit": "celsius"
+                },
+                "overrides": [
+                    {
+                        "matcher": { "id": "byName", "options": "dew_point" },
+                        "properties": [
+                            { "id": "color", "value": { "fixedColor": "#40844080", "mode": "fixed" } },
+                            { "id": "displayName", "value": "dew point" }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": { "h": 9, "w": 12, "x": 0, "y": 4 },
+            "id": 4,
+            "options": {
+                "annotations": { "clustering": -1, "multiLane": false },
+                "legend": { "calcs": [], "displayMode": "table", "placement": "bottom", "showLegend": true },
+                "tooltip": { "hideZeros": false, "mode": "multi", "sort": "desc" }
+            },
+            "pluginVersion": "13.1.0-25308208488",
+            "targets": [
+                {
+                    "columns": [
+                        { "selector": "time", "text": "time", "type": "timestamp" },
+                        { "selector": "temperature", "text": "temperature", "type": "number" },
+                        { "selector": "dew_point", "text": "dew_point", "type": "number" }
+                    ],
+                    "datasource": { "type": "yesoreyeram-infinity-datasource", "uid": "aeusl4w6pt1xcf" },
+                    "filters": [],
+                    "format": "timeseries",
+                    "global_query_id": "",
+                    "parser": "jq-backend",
+                    "refId": "A",
+                    "root_selector": ".results[0].response.result as $r\n| $r.rows\n| map(\n    [ $r.cols, . ]\n    | transpose\n    | map({\n        (.[0].name):\n          if (.[1] | type) == \"object\" then\n            if (.[1].type == \"null\") then\n              null\n            elif (.[1] | has(\"value\")) then\n              .[1].value\n            else\n              .[1]\n            end\n          else\n            .[1]\n          end\n      })\n    | add\n  )\n",
+                    "source": "url",
+                    "type": "json",
+                    "url": "__TURSO_PIPELINE_URL__",
+                    "url_options": {
+                        "body_content_type": "application/json",
+                        "body_type": "raw",
+                        "data": "{\r\n  \"requests\": [\r\n    {\r\n      \"type\": \"execute\",\r\n      \"stmt\": {\r\n        \"sql\": \"SELECT STRFTIME(\\\"%Y-%m-%dT%H:%M:%SZ\\\", datetime(timestamp, \\\"unixepoch\\\")) AS time, temperature, dew_point FROM weather WHERE timestamp BETWEEN ?/1000 AND ?/1000 ORDER BY timestamp ASC\",\r\n        \"args\": [\r\n          { \"type\": \"integer\", \"value\": \"${__from}\" },\r\n          { \"type\": \"integer\", \"value\": \"${__to}\" }\r\n        ]\r\n      }\r\n    },\r\n    { \"type\": \"close\" }\r\n  ]\r\n}\r\n",
+                        "headers": [],
+                        "method": "POST",
+                        "params": []
+                    }
+                }
+            ],
+            "title": "Temperature",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "yesoreyeram-infinity-datasource",
+                "uid": "aeusl4w6pt1xcf"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "fixedColor": "dark-blue", "mode": "fixed", "seriesBy": "last" },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "series",
+                        "axisGridShow": true,
+                        "axisLabel": "",
+                        "axisPlacement": "left",
+                        "axisSoftMax": 100,
+                        "axisSoftMin": 0,
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 8,
+                        "gradientMode": "opacity",
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                        "insertNulls": 3600000,
+                        "lineInterpolation": "smooth",
+                        "lineStyle": { "fill": "solid" },
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": { "type": "linear" },
+                        "showPoints": "auto",
+                        "showValues": false,
+                        "spanNulls": 3600000,
+                        "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{ "color": "semi-dark-blue", "value": 0 }]
+                    },
+                    "unit": "humidity"
+                },
+                "overrides": []
+            },
+            "gridPos": { "h": 9, "w": 12, "x": 12, "y": 4 },
+            "id": 2,
+            "options": {
+                "annotations": { "clustering": -1, "multiLane": false },
+                "legend": { "calcs": [], "displayMode": "table", "placement": "bottom", "showLegend": true },
+                "tooltip": { "hideZeros": false, "mode": "multi", "sort": "none" }
+            },
+            "pluginVersion": "13.1.0-25308208488",
+            "targets": [
+                {
+                    "columns": [
+                        { "selector": "time", "text": "time", "type": "timestamp" },
+                        { "selector": "humidity", "text": "humidity", "type": "number" }
+                    ],
+                    "datasource": { "type": "yesoreyeram-infinity-datasource", "uid": "aeusl4w6pt1xcf" },
+                    "filters": [],
+                    "format": "timeseries",
+                    "global_query_id": "",
+                    "parser": "jq-backend",
+                    "refId": "A",
+                    "root_selector": ".results[0].response.result as $r\n| $r.rows\n| map(\n    [ $r.cols, . ]\n    | transpose\n    | map({\n        (.[0].name):\n          if (.[1] | type) == \"object\" then\n            if (.[1].type == \"null\") then\n              null\n            elif (.[1] | has(\"value\")) then\n              .[1].value\n            else\n              .[1]\n            end\n          else\n            .[1]\n          end\n      })\n    | add\n  )\n",
+                    "source": "url",
+                    "type": "json",
+                    "url": "__TURSO_PIPELINE_URL__",
+                    "url_options": {
+                        "body_content_type": "application/json",
+                        "body_type": "raw",
+                        "data": "{\r\n  \"requests\": [\r\n    {\r\n      \"type\": \"execute\",\r\n      \"stmt\": {\r\n        \"sql\": \"SELECT STRFTIME(\\\"%Y-%m-%dT%H:%M:%SZ\\\", datetime(timestamp, \\\"unixepoch\\\")) AS time, humidity FROM weather WHERE timestamp BETWEEN ?/1000 AND ?/1000 ORDER BY timestamp ASC\",\r\n        \"args\": [\r\n          { \"type\": \"integer\", \"value\": \"${__from}\" },\r\n          { \"type\": \"integer\", \"value\": \"${__to}\" }\r\n        ]\r\n      }\r\n    },\r\n    { \"type\": \"close\" }\r\n  ]\r\n}\r\n",
+                        "headers": [],
+                        "method": "POST",
+                        "params": []
+                    }
+                }
+            ],
+            "title": "Humidity",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "yesoreyeram-infinity-datasource",
+                "uid": "aeusl4w6pt1xcf"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "fixedColor": "semi-dark-orange", "mode": "fixed" },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "series",
+                        "axisGridShow": true,
+                        "axisLabel": "",
+                        "axisPlacement": "left",
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 8,
+                        "gradientMode": "opacity",
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                        "insertNulls": 3600000,
+                        "lineInterpolation": "smooth",
+                        "lineStyle": { "fill": "solid" },
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": { "type": "linear" },
+                        "showPoints": "auto",
+                        "showValues": false,
+                        "spanNulls": 3600000,
+                        "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
+                    },
+                    "decimals": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{ "color": "green", "value": 0 }]
+                    },
+                    "unit": "pressurehpa"
+                },
+                "overrides": []
+            },
+            "gridPos": { "h": 9, "w": 12, "x": 0, "y": 13 },
+            "id": 3,
+            "options": {
+                "annotations": { "clustering": -1, "multiLane": false },
+                "legend": { "calcs": [], "displayMode": "table", "placement": "bottom", "showLegend": true },
+                "tooltip": { "hideZeros": false, "mode": "multi", "sort": "none" }
+            },
+            "pluginVersion": "13.1.0-25308208488",
+            "targets": [
+                {
+                    "columns": [
+                        { "selector": "time", "text": "time", "type": "timestamp" },
+                        { "selector": "pressure", "text": "pressure", "type": "number" }
+                    ],
+                    "datasource": { "type": "yesoreyeram-infinity-datasource", "uid": "aeusl4w6pt1xcf" },
+                    "filters": [],
+                    "format": "timeseries",
+                    "global_query_id": "",
+                    "parser": "jq-backend",
+                    "refId": "A",
+                    "root_selector": ".results[0].response.result as $r\n| $r.rows\n| map(\n    [ $r.cols, . ]\n    | transpose\n    | map({\n        (.[0].name):\n          if (.[1] | type) == \"object\" then\n            if (.[1].type == \"null\") then\n              null\n            elif (.[1] | has(\"value\")) then\n              .[1].value\n            else\n              .[1]\n            end\n          else\n            .[1]\n          end\n      })\n    | add\n  )\n",
+                    "source": "url",
+                    "type": "json",
+                    "url": "__TURSO_PIPELINE_URL__",
+                    "url_options": {
+                        "body_content_type": "application/json",
+                        "body_type": "raw",
+                        "data": "{\r\n  \"requests\": [\r\n    {\r\n      \"type\": \"execute\",\r\n      \"stmt\": {\r\n        \"sql\": \"SELECT STRFTIME(\\\"%Y-%m-%dT%H:%M:%SZ\\\", datetime(timestamp, \\\"unixepoch\\\")) AS time, pressure FROM weather WHERE timestamp BETWEEN ?/1000 AND ?/1000 ORDER BY timestamp ASC\",\r\n        \"args\": [\r\n          { \"type\": \"integer\", \"value\": \"${__from}\" },\r\n          { \"type\": \"integer\", \"value\": \"${__to}\" }\r\n        ]\r\n      }\r\n    },\r\n    { \"type\": \"close\" }\r\n  ]\r\n}\r\n",
+                        "headers": [],
+                        "method": "POST",
+                        "params": []
+                    }
+                }
+            ],
+            "title": "Pressure",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "yesoreyeram-infinity-datasource",
+                "uid": "aeusl4w6pt1xcf"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "fixedColor": "#c1bcbcbf", "mode": "thresholds", "seriesBy": "last" },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "series",
+                        "axisGridShow": true,
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "barWidthFactor": 1,
+                        "drawStyle": "line",
+                        "fillOpacity": 4,
+                        "gradientMode": "scheme",
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                        "insertNulls": 3600000,
+                        "lineInterpolation": "linear",
+                        "lineStyle": { "fill": "solid" },
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": { "type": "linear" },
+                        "showPoints": "auto",
+                        "showValues": false,
+                        "spanNulls": 3600000,
+                        "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
+                    },
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            { "color": "dark-green", "value": 0 },
+                            { "color": "green", "value": 15 },
+                            { "color": "dark-yellow", "value": 35 },
+                            { "color": "dark-orange", "value": 55 },
+                            { "color": "red", "value": 75 },
+                            { "color": "dark-red", "value": 110 }
+                        ]
+                    },
+                    "unit": "conμgm3"
+                },
+                "overrides": [
+                    {
+                        "matcher": { "id": "byName", "options": "mc_pm1_0" },
+                        "properties": [{ "id": "displayName", "value": "PM 1.0" }]
+                    },
+                    {
+                        "matcher": { "id": "byName", "options": "mc_pm2_5" },
+                        "properties": [{ "id": "displayName", "value": "PM 2.5" }]
+                    },
+                    {
+                        "matcher": { "id": "byName", "options": "mc_pm10_0" },
+                        "properties": [{ "id": "displayName", "value": "PM 10" }]
+                    }
+                ]
+            },
+            "gridPos": { "h": 9, "w": 12, "x": 12, "y": 13 },
+            "id": 8,
+            "options": {
+                "annotations": { "clustering": -1, "multiLane": false },
+                "legend": { "calcs": [], "displayMode": "table", "placement": "bottom", "showLegend": true },
+                "timezone": ["browser"],
+                "tooltip": { "hideZeros": false, "mode": "multi", "sort": "none" }
+            },
+            "pluginVersion": "13.1.0-25308208488",
+            "targets": [
+                {
+                    "columns": [
+                        { "selector": "time", "text": "time", "type": "timestamp" },
+                        { "selector": "mc_pm1_0", "text": "mc_pm1_0", "type": "number" },
+                        { "selector": "mc_pm2_5", "text": "mc_pm2_5", "type": "number" },
+                        { "selector": "mc_pm10_0", "text": "mc_pm10_0", "type": "number" }
+                    ],
+                    "datasource": { "type": "yesoreyeram-infinity-datasource", "uid": "aeusl4w6pt1xcf" },
+                    "filters": [],
+                    "format": "timeseries",
+                    "global_query_id": "",
+                    "parser": "jq-backend",
+                    "refId": "A",
+                    "root_selector": ".results[0].response.result as $r\n| $r.rows\n| map(\n    [ $r.cols, . ]\n    | transpose\n    | map({\n        (.[0].name):\n          if (.[1] | type) == \"object\" then\n            if (.[1].type == \"null\") then\n              null\n            elif (.[1] | has(\"value\")) then\n              .[1].value\n            else\n              .[1]\n            end\n          else\n            .[1]\n          end\n      })\n    | add\n  )\n",
+                    "source": "url",
+                    "type": "json",
+                    "url": "__TURSO_PIPELINE_URL__",
+                    "url_options": {
+                        "body_content_type": "application/json",
+                        "body_type": "raw",
+                        "data": "{\r\n  \"requests\": [\r\n    {\r\n      \"type\": \"execute\",\r\n      \"stmt\": {\r\n        \"sql\": \"SELECT STRFTIME(\\\"%Y-%m-%dT%H:%M:%SZ\\\", datetime(timestamp, \\\"unixepoch\\\")) AS time, mc_pm1_0, mc_pm2_5, mc_pm10_0 FROM weather WHERE timestamp BETWEEN ?/1000 AND ?/1000 AND mc_pm1_0 IS NOT NULL ORDER BY timestamp ASC\",\r\n        \"args\": [\r\n          { \"type\": \"integer\", \"value\": \"${__from}\" },\r\n          { \"type\": \"integer\", \"value\": \"${__to}\" }\r\n        ]\r\n      }\r\n    },\r\n    { \"type\": \"close\" }\r\n  ]\r\n}\r\n",
+                        "headers": [],
+                        "method": "POST",
+                        "params": []
+                    }
+                }
+            ],
+            "title": "Particulate Matter",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "yesoreyeram-infinity-datasource",
+                "uid": "aeusl4w6pt1xcf"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "fixedColor": "green", "mode": "continuous-viridis" },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "series",
+                        "axisGridShow": true,
+                        "axisLabel": "",
+                        "axisPlacement": "left",
+                        "axisSoftMax": 8,
+                        "axisSoftMin": 0,
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 4,
+                        "gradientMode": "scheme",
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                        "insertNulls": 3600000,
+                        "lineInterpolation": "smooth",
+                        "lineStyle": { "fill": "solid" },
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": { "type": "linear" },
+                        "showPoints": "auto",
+                        "showValues": false,
+                        "spanNulls": 3600000,
+                        "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
+                    },
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{ "color": "green", "value": 0 }]
+                    },
+                    "unit": "volt"
+                },
+                "overrides": [
+                    {
+                        "matcher": { "id": "byName", "options": "battery_voltage" },
+                        "properties": [{ "id": "displayName", "value": "battery voltage" }]
+                    },
+                    {
+                        "matcher": { "id": "byName", "options": "solar_voltage" },
+                        "properties": [{ "id": "displayName", "value": "solar voltage" }]
+                    }
+                ]
+            },
+            "gridPos": { "h": 7, "w": 24, "x": 0, "y": 22 },
+            "id": 5,
+            "options": {
+                "annotations": { "clustering": -1, "multiLane": false },
+                "legend": { "calcs": [], "displayMode": "table", "placement": "bottom", "showLegend": true },
+                "timezone": ["browser"],
+                "tooltip": { "hideZeros": false, "mode": "multi", "sort": "desc" }
+            },
+            "pluginVersion": "13.1.0-25308208488",
+            "targets": [
+                {
+                    "columns": [
+                        { "selector": "time", "text": "time", "type": "timestamp" },
+                        { "selector": "battery_voltage", "text": "battery_voltage", "type": "number" },
+                        { "selector": "solar_voltage", "text": "solar_voltage", "type": "number" }
+                    ],
+                    "datasource": { "type": "yesoreyeram-infinity-datasource", "uid": "aeusl4w6pt1xcf" },
+                    "filters": [],
+                    "format": "timeseries",
+                    "global_query_id": "",
+                    "parser": "jq-backend",
+                    "refId": "A",
+                    "root_selector": ".results[0].response.result as $r\n| $r.rows\n| map(\n    [ $r.cols, . ]\n    | transpose\n    | map({\n        (.[0].name):\n          if (.[1] | type) == \"object\" then\n            if (.[1].type == \"null\") then\n              null\n            elif (.[1] | has(\"value\")) then\n              .[1].value\n            else\n              .[1]\n            end\n          else\n            .[1]\n          end\n      })\n    | add\n  )\n",
+                    "source": "url",
+                    "type": "json",
+                    "url": "__TURSO_PIPELINE_URL__",
+                    "url_options": {
+                        "body_content_type": "application/json",
+                        "body_type": "raw",
+                        "data": "{\r\n  \"requests\": [\r\n    {\r\n      \"type\": \"execute\",\r\n      \"stmt\": {\r\n        \"sql\": \"SELECT STRFTIME(\\\"%Y-%m-%dT%H:%M:%SZ\\\", datetime(timestamp, \\\"unixepoch\\\")) AS time, battery_voltage, solar_voltage FROM weather WHERE timestamp BETWEEN ?/1000 AND ?/1000 ORDER BY timestamp ASC\",\r\n        \"args\": [\r\n          { \"type\": \"integer\", \"value\": \"${__from}\" },\r\n          { \"type\": \"integer\", \"value\": \"${__to}\" }\r\n        ]\r\n      }\r\n    },\r\n    { \"type\": \"close\" }\r\n  ]\r\n}\r\n",
+                        "headers": [],
+                        "method": "POST",
+                        "params": []
+                    }
+                }
+            ],
+            "title": "Voltages",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "yesoreyeram-infinity-datasource",
+                "uid": "aeusl4w6pt1xcf"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "mode": "palette-classic" },
+                    "custom": {
+                        "axisBorderShow": true,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "series",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "axisSoftMax": 65535,
+                        "axisSoftMin": 0,
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 32,
+                        "gradientMode": "hue",
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                        "insertNulls": 3600000,
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 1,
+                        "pointSize": 4,
+                        "scaleDistribution": { "type": "linear" },
+                        "showPoints": "never",
+                        "showValues": false,
+                        "spanNulls": 3600000,
+                        "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
+                    },
+                    "displayName": "Illumination",
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            { "color": "green", "value": 0 },
+                            { "color": "red", "value": 80 }
+                        ]
+                    },
+                    "unit": "lux"
+                },
+                "overrides": [
+                    {
+                        "matcher": { "id": "byName", "options": "illumination" },
+                        "properties": [
+                            { "id": "color", "value": { "fixedColor": "semi-dark-red", "mode": "fixed" } }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": { "h": 9, "w": 12, "x": 0, "y": 29 },
+            "id": 7,
+            "options": {
+                "annotations": { "clustering": -1, "multiLane": false },
+                "legend": { "calcs": ["last", "min", "max", "mean"], "displayMode": "table", "placement": "bottom", "showLegend": true },
+                "tooltip": { "hideZeros": false, "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "13.1.0-25308208488",
+            "targets": [
+                {
+                    "columns": [
+                        { "selector": "time", "text": "time", "type": "timestamp" },
+                        { "selector": "illumination", "text": "illumination", "type": "number" }
+                    ],
+                    "datasource": { "type": "yesoreyeram-infinity-datasource", "uid": "aeusl4w6pt1xcf" },
+                    "filters": [],
+                    "format": "timeseries",
+                    "global_query_id": "",
+                    "parser": "jq-backend",
+                    "refId": "A",
+                    "root_selector": ".results[0].response.result as $r\n| $r.rows\n| map(\n    [ $r.cols, . ]\n    | transpose\n    | map({\n        (.[0].name):\n          if (.[1] | type) == \"object\" then\n            if (.[1].type == \"null\") then\n              null\n            elif (.[1] | has(\"value\")) then\n              .[1].value\n            else\n              .[1]\n            end\n          else\n            .[1]\n          end\n      })\n    | add\n  )\n",
+                    "source": "url",
+                    "type": "json",
+                    "url": "__TURSO_PIPELINE_URL__",
+                    "url_options": {
+                        "body_content_type": "application/json",
+                        "body_type": "raw",
+                        "data": "{\r\n  \"requests\": [\r\n    {\r\n      \"type\": \"execute\",\r\n      \"stmt\": {\r\n        \"sql\": \"SELECT STRFTIME(\\\"%Y-%m-%dT%H:%M:%SZ\\\", datetime(timestamp, \\\"unixepoch\\\")) AS time, illumination FROM weather WHERE timestamp BETWEEN ?/1000 AND ?/1000 ORDER BY timestamp ASC\",\r\n        \"args\": [\r\n          { \"type\": \"integer\", \"value\": \"${__from}\" },\r\n          { \"type\": \"integer\", \"value\": \"${__to}\" }\r\n        ]\r\n      }\r\n    },\r\n    { \"type\": \"close\" }\r\n  ]\r\n}\r\n",
+                        "headers": [],
+                        "method": "POST",
+                        "params": []
+                    }
+                }
+            ],
+            "title": "Illumination",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "yesoreyeram-infinity-datasource",
+                "uid": "aeusl4w6pt1xcf"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "mode": "palette-classic" },
+                    "custom": {
+                        "axisBorderShow": true,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "series",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "axisSoftMax": 1,
+                        "axisSoftMin": 0,
+                        "barAlignment": 0,
+                        "barWidthFactor": 0.6,
+                        "drawStyle": "line",
+                        "fillOpacity": 32,
+                        "gradientMode": "hue",
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                        "insertNulls": 3600000,
+                        "lineInterpolation": "smooth",
+                        "lineStyle": { "fill": "solid" },
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": { "type": "linear" },
+                        "showPoints": "never",
+                        "showValues": false,
+                        "spanNulls": 3600000,
+                        "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
+                    },
+                    "displayName": "UV Voltage",
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            { "color": "green", "value": 0 },
+                            { "color": "red", "value": 80 }
+                        ]
+                    },
+                    "unit": "volt"
+                },
+                "overrides": [
+                    {
+                        "matcher": { "id": "byName", "options": "uv_voltage" },
+                        "properties": [
+                            { "id": "color", "value": { "fixedColor": "semi-dark-purple", "mode": "fixed" } }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": { "h": 9, "w": 12, "x": 12, "y": 29 },
+            "id": 6,
+            "options": {
+                "annotations": { "clustering": -1, "multiLane": false },
+                "legend": { "calcs": ["last", "min", "max", "mean"], "displayMode": "table", "placement": "bottom", "showLegend": true },
+                "tooltip": { "hideZeros": false, "mode": "single", "sort": "none" }
+            },
+            "pluginVersion": "13.1.0-25308208488",
+            "targets": [
+                {
+                    "columns": [
+                        { "selector": "time", "text": "time", "type": "timestamp" },
+                        { "selector": "uv_voltage", "text": "uv_voltage", "type": "number" }
+                    ],
+                    "datasource": { "type": "yesoreyeram-infinity-datasource", "uid": "aeusl4w6pt1xcf" },
+                    "filters": [],
+                    "format": "timeseries",
+                    "global_query_id": "",
+                    "parser": "jq-backend",
+                    "refId": "A",
+                    "root_selector": ".results[0].response.result as $r\n| $r.rows\n| map(\n    [ $r.cols, . ]\n    | transpose\n    | map({\n        (.[0].name):\n          if (.[1] | type) == \"object\" then\n            if (.[1].type == \"null\") then\n              null\n            elif (.[1] | has(\"value\")) then\n              .[1].value\n            else\n              .[1]\n            end\n          else\n            .[1]\n          end\n      })\n    | add\n  )\n",
+                    "source": "url",
+                    "type": "json",
+                    "url": "__TURSO_PIPELINE_URL__",
+                    "url_options": {
+                        "body_content_type": "application/json",
+                        "body_type": "raw",
+                        "data": "{\r\n  \"requests\": [\r\n    {\r\n      \"type\": \"execute\",\r\n      \"stmt\": {\r\n        \"sql\": \"SELECT STRFTIME(\\\"%Y-%m-%dT%H:%M:%SZ\\\", datetime(timestamp, \\\"unixepoch\\\")) AS time, uv_voltage FROM weather WHERE timestamp BETWEEN ?/1000 AND ?/1000 ORDER BY timestamp ASC\",\r\n        \"args\": [\r\n          { \"type\": \"integer\", \"value\": \"${__from}\" },\r\n          { \"type\": \"integer\", \"value\": \"${__to}\" }\r\n        ]\r\n      }\r\n    },\r\n    { \"type\": \"close\" }\r\n  ]\r\n}\r\n",
+                        "headers": [],
+                        "method": "POST",
+                        "params": []
+                    }
+                }
+            ],
+            "title": "UV Voltage",
+            "transparent": true,
+            "type": "timeseries"
+        }
+    ],
+    "preload": false,
+    "refresh": "",
+    "schemaVersion": 42,
+    "time": { "from": "now-30d", "to": "now" },
+    "timepicker": {
+        "refresh_intervals": ["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"]
+    },
+    "timezone": "browser",
+    "title": "Kropelki • Turso • All-time data",
+    "weekStart": "monday"
+}

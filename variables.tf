@@ -34,6 +34,7 @@ variable "influxdb_bucket" {
 variable "turso_url" {
   description = "Turso database URL"
   type        = string
+  sensitive   = true
 }
 
 variable "turso_auth_token" {

@@ -14,6 +14,11 @@ provider "grafana" {
   auth = var.grafana_auth_token
 }
 
+locals {
+  # The URL is sth like: https://kropelki-abc.aws-eu-west-1.turso.io/v2/pipeline
+  turso_pipeline_url = "${trimsuffix(var.turso_url, "/")}/v2/pipeline"
+}
+
 # https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/data_source
 # https://grafana.com/docs/grafana/latest/datasources/influxdb/configure-influxdb-data-source/#provisioning-examples
 #
@@ -66,4 +71,13 @@ resource "grafana_data_source" "turso" {
 resource "grafana_dashboard" "kropelki_dashboard" {
   config_json = file("dashboard.json")
   overwrite = true
+}
+
+resource "grafana_dashboard" "kropelki_turso_dashboard" {
+  config_json = replace(
+    file("dashboard-turso.json"),
+    "__TURSO_PIPELINE_URL__",
+    local.turso_pipeline_url,
+  )
+  overwrite   = true
 }
