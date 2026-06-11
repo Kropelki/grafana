@@ -70,7 +70,7 @@ resource "grafana_data_source" "turso" {
 #
 resource "grafana_dashboard" "kropelki_dashboard" {
   config_json = file("dashboard.json")
-  overwrite = true
+  overwrite   = true
 }
 
 resource "grafana_dashboard" "kropelki_turso_dashboard" {
@@ -79,5 +79,5 @@ resource "grafana_dashboard" "kropelki_turso_dashboard" {
     "__TURSO_PIPELINE_URL__",
     local.turso_pipeline_url,
   )
-  overwrite   = true
+  overwrite = true
 }
